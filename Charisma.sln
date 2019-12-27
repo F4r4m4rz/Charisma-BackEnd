@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charisma.Core", "Charisma.Core\Charisma.Core.csproj", "{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charisma.Data", "Charisma.Data\Charisma.Data.csproj", "{749CAD82-662B-4AB3-804E-D91BB193371C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{749CAD82-662B-4AB3-804E-D91BB193371C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{749CAD82-662B-4AB3-804E-D91BB193371C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{749CAD82-662B-4AB3-804E-D91BB193371C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{749CAD82-662B-4AB3-804E-D91BB193371C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
