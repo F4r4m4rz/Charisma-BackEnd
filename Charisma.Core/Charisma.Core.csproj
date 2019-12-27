@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Menu\" />
+    <Folder Include="Events\" />
+    <Folder Include="News\" />
+    <Folder Include="UserIntraction\" />
+  </ItemGroup>
 </Project>

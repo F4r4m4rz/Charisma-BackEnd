@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="InMemory\" />
+    <Folder Include="EF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Charisma.Core\Charisma.Core.csproj" />
+  </ItemGroup>
 </Project>
