@@ -1,4 +1,4 @@
-﻿namespace Charisma.Core.Menu
+﻿namespace Charisma.Core.Model.Menu
 {
     public enum MainTypeEnum
     {

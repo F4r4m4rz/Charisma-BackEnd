@@ -5,9 +5,31 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Menu\" />
-    <Folder Include="Events\" />
-    <Folder Include="News\" />
     <Folder Include="UserIntraction\" />
+    <Folder Include="Model\" />
+    <Folder Include="Model\Base\" />
+    <Folder Include="Model\Menu\" />
+    <Folder Include="Model\Events\" />
+    <Folder Include="Model\News\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Model\Menu\IMenuItemType.cs" />
+    <Compile Remove="Model\Menu\SubTypeEnum.cs" />
+    <Compile Remove="Model\Menu\MainTypeEnum.cs" />
+    <Compile Remove="Model\Menu\IMenuItemSubType.cs" />
+    <Compile Remove="Model\Menu\IMenuItemDetail.cs" />
+    <Compile Remove="Model\Menu\IMenuItem.cs" />
+    <Compile Remove="Model\Menu\IIngredient.cs" />
+    <Compile Remove="Model\Menu\xIMenuItemType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
   </ItemGroup>
 </Project>
