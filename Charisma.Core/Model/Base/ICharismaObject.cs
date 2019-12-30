@@ -3,6 +3,7 @@ namespace Charisma.Core.Model.Base
 {
     public interface ICharismaObject
     {
+        int Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
         CharismaFile File_1 { get; set; }

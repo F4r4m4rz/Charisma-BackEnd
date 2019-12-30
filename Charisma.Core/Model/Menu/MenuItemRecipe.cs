@@ -8,8 +8,14 @@ namespace Charisma.Core.Model.Menu
 {
     public class MenuItemRecipe : ICharismaObject
     {
-        [Key, Column(Order =0)]
+        [Key, Column(Order = 0)]
+        public int Id { get; set; }
+
+        [Key, Column(Order = 1)]
+        [MaxLength(50)]
         public string Name { get; set; }
+
+        [MaxLength(255)]
         public string Description { get; set; }
 
         public virtual IEnumerable<Ingredient> Ingredients { get; set; }

@@ -7,6 +7,9 @@ namespace Charisma.Core.Model.Menu
 {
     public class MenuItemType : ICharismaObject
     {
+        [NotMapped]
+        public int Id { get; set; }
+
         [Key]
         [MaxLength(50)]
         public string Name { get; set; }

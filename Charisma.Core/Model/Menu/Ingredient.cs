@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Charisma.Core.Model.Base;
 
 namespace Charisma.Core.Model.Menu
 {
     public class Ingredient : ICharismaObject
     {
-        [Key]
+        [Key, Column(Order = 0)]
+        public int Id { get; set; }
+
+        [Key, Column(Order = 1)]
         [MaxLength(50)]
         public string Name { get; set; }
 

@@ -7,6 +7,7 @@ namespace Charisma.Core.Model.Events
 {
     public class EventItem : ICharismaObject
     {
+        public int Id { get; set; }
         [Key, Column(Order = 0)]
         [MaxLength(50)]
         public string Name { get; set; }

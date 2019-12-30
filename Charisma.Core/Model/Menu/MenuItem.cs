@@ -10,8 +10,10 @@ namespace Charisma.Core.Model.Menu
 {
     public class MenuItem : ICharismaObject
     {
-        [Key, Column(Order =0)]
+        public int Id { get; set; }
+
         [MaxLength(50)]
+        [Required]
         public string Name { get; set;}
 
         [MaxLength(255)]
