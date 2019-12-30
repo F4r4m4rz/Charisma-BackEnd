@@ -12,17 +12,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Charisma.Core\Charisma.Core.csproj" />
-  </ItemGroup>
-
-
-
-  <ItemGroup>
-    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Views\Shared\logo.jpg">
@@ -31,12 +25,15 @@
     <None Update="Views\Shared\logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="images\logo.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\images\logo.jpg" />
     <Content Remove="wwwroot\css\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="wwwroot\images\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\logo1.jpg" />
   </ItemGroup>
 </Project>
