@@ -7,6 +7,12 @@ namespace Charisma.Core.Data
 {
     public class CharismaDbContext : DbContext
     {
+        public CharismaDbContext(DbContextOptions<CharismaDbContext> options)
+            : base(options)
+        {
+
+        }
+
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<MenuItemType> MenuItemTypes { get; set; }
         public DbSet<MenuItemSubType> MenuItemSubTypes { get; set; }

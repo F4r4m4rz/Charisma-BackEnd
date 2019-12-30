@@ -5,12 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UserIntraction\" />
+    <Compile Remove="Model\News\**" />
+    <Compile Remove="UserIntraction\**" />
+    <EmbeddedResource Remove="Model\News\**" />
+    <EmbeddedResource Remove="UserIntraction\**" />
+    <None Remove="Model\News\**" />
+    <None Remove="UserIntraction\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Model\Base\" />
     <Folder Include="Model\Menu\" />
     <Folder Include="Model\Events\" />
-    <Folder Include="Model\News\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>

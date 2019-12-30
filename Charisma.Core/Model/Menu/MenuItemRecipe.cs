@@ -12,8 +12,6 @@ namespace Charisma.Core.Model.Menu
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [Key, Column(Order =1)]
-        public MenuItem menuItem { get; set; }
         public virtual IEnumerable<Ingredient> Ingredients { get; set; }
         public CharismaFile File_1 { get; set; }
         public CharismaFile File_2 { get; set; }

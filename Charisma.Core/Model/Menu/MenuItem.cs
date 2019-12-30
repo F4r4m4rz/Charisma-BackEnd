@@ -17,10 +17,10 @@ namespace Charisma.Core.Model.Menu
         [MaxLength(255)]
         public string Description { get; set; }
 
-        [Key, Column(Order = 1)]
+        [Required]
         public MenuItemType Type { get; set; }
 
-        [Key, Column(Order = 2)]
+        [Required]
         public MenuItemSubType SubType { get; set; }
 
         public MenuItemRecipe Recipe { get; set; }
