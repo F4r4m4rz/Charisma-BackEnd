@@ -12,7 +12,7 @@ namespace Charisma.Core.Data
         {
 
         }
-
+        
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<MenuItemType> MenuItemTypes { get; set; }
         public DbSet<MenuItemSubType> MenuItemSubTypes { get; set; }
