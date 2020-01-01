@@ -13,12 +13,12 @@ namespace Charisma.Core.Data
 
         }
         
-        public DbSet<MenuItem> Menu { get; set; }
-        public DbSet<MenuItemType> MenuItemTypes { get; set; }
-        public DbSet<MenuItemSubType> MenuItemSubTypes { get; set; }
+        internal DbSet<IMenuItem> Menu { get; set; }
+        internal DbSet<IMenuItemType> MenuItemTypes { get; set; }
+        internal DbSet<IMenuItemSubType> MenuItemSubTypes { get; set; }
 
-        public DbSet<EventItem> Events { get; set; }
-        public DbSet<EventType> EventTypes { get; set; }
-        public DbSet<EventSubType> EventSubTypes { get; set; }
+        internal DbSet<EventItem> Events { get; set; }
+        internal DbSet<EventType> EventTypes { get; set; }
+        internal DbSet<EventSubType> EventSubTypes { get; set; }
     }
 }

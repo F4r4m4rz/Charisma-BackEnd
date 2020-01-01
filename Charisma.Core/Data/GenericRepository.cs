@@ -6,18 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Charisma.Core.Data
 {
-    internal class GenericRepository<T> : IRepository<T> where T : class
+    internal class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly CharismaDbContext db;
-        private DbSet<T> _dbSet;
+        private DbSet<TEntity> _dbSet;
 
         public GenericRepository(CharismaDbContext db)
         {
             this.db = db;
-
+            _dbSet = db.Set<TEntity>();
         }
 
-        public void Add(T data)
+        public void Add(TEntity data)
         {
             _dbSet.Add(data);
             db.SaveChanges();
@@ -34,12 +34,12 @@ namespace Charisma.Core.Data
             }
         }
 
-        public T Get(params object[] keys)
+        public TEntity Get(params object[] keys)
         {
             return _dbSet.Find(keys);
         }
 
-        public IEnumerable<T> GetAll(Func<T, bool> func = null)
+        public IEnumerable<TEntity> GetAll(Func<TEntity, bool> func = null)
         {
             if (func == null)
             {
@@ -49,12 +49,12 @@ namespace Charisma.Core.Data
             return _dbSet.Where(func);
         }
 
-        public IQueryable<T> GetAllQueryable()
+        public IQueryable<TEntity> GetAllQueryable()
         {
             return _dbSet;
         }
 
-        public void Update(T updatedData)
+        public void Update(TEntity updatedData)
         {
             db.Entry(updatedData).State = EntityState.Modified;
             db.SaveChanges();

@@ -30,7 +30,7 @@ namespace Charisma.MVC
                 options.UseSqlServer(Configuration.GetConnectionString("CharismaData"));
             });
 
-            services.AddScoped<IRepository<MenuItem>, GenericRepository>();
+            services.AddScoped<IRepository<MenuItem>, GenericRepository<MenuItem>>();
 
             services.AddControllersWithViews();
         }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Charisma.Core.Data
 {
-    public interface ICharismaData<T>
+    public interface ICharismaData<T1,T2>
     {
-        T Get(params object[] keys);
-        IEnumerable<T> GetAll(Func<T, bool> func = null);
+        T1 Get(params object[] keys);
+        IEnumerable<T1> GetAll(Func<T1, bool> func = null);
 
-        void Update(T updatedObj);
-        void Delete(params object[] keys);
-        void Delete(T deletedObject);
+        void Update(T1 updatedObj);
+        void Delete(T2 key);
+        void Delete(T1 deletedObject);
     }
 }

@@ -19,16 +19,6 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Model\Menu\IMenuItemType.cs" />
-    <Compile Remove="Model\Menu\SubTypeEnum.cs" />
-    <Compile Remove="Model\Menu\MainTypeEnum.cs" />
-    <Compile Remove="Model\Menu\IMenuItemSubType.cs" />
-    <Compile Remove="Model\Menu\IMenuItemDetail.cs" />
-    <Compile Remove="Model\Menu\IMenuItem.cs" />
-    <Compile Remove="Model\Menu\IIngredient.cs" />
-    <Compile Remove="Model\Menu\xIMenuItemType.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
