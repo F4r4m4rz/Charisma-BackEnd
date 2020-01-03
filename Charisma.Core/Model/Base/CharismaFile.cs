@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Charisma.Core.Model.Base
 {
-    public class CharismaFile : ICharismaFile
+    public class CharismaFile
     {
         public int Id { get; set; }
         public string Name { get; set; }

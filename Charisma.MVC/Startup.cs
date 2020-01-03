@@ -26,11 +26,14 @@ namespace Charisma.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<CharismaDbContext>(options => {
+            services.AddDbContextPool<CharismaDbContext>(options =>
+            {
                 options.UseSqlServer(Configuration.GetConnectionString("CharismaData"));
             });
 
-            services.AddScoped<IRepository<MenuItem>, GenericRepository<MenuItem>>();
+            services.AddScoped<DbContext, CharismaDbContext>();
+            services.AddScoped<IRepository<MenuItemType>, GenericRepository<MenuItemType>>();
+            services.AddScoped<IRepository<MenuItemSubType>, GenericRepository<MenuItemSubType>>();
 
             services.AddControllersWithViews();
         }
@@ -59,7 +62,7 @@ namespace Charisma.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{key?}");
             });
         }
     }

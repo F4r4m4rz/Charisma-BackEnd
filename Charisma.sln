@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Charisma.Core", "Charisma.Core\Charisma.Core.csproj", "{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charisma.MVC", "Charisma.MVC\Charisma.MVC.csproj", "{BF8A919D-33F1-4757-AD58-22FACAEDFDCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charisma.MVC", "Charisma.MVC\Charisma.MVC.csproj", "{4D821990-7E49-4D68-AD2A-F5169C4C10D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,17 +16,15 @@ Global
 		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981BC68F-C7EF-4ED1-A973-791F2A28EDD4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF8A919D-33F1-4757-AD58-22FACAEDFDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF8A919D-33F1-4757-AD58-22FACAEDFDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF8A919D-33F1-4757-AD58-22FACAEDFDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF8A919D-33F1-4757-AD58-22FACAEDFDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D821990-7E49-4D68-AD2A-F5169C4C10D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D821990-7E49-4D68-AD2A-F5169C4C10D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D821990-7E49-4D68-AD2A-F5169C4C10D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D821990-7E49-4D68-AD2A-F5169C4C10D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CADDB5EA-2F09-436B-B3C6-F72355F248B5}
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

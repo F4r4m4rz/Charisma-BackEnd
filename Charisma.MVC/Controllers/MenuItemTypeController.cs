@@ -9,27 +9,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Charisma.MVC.Controllers
 {
-    public class MenuController : Controller
+    public class MenuItemTypeController : Controller
     {
-        private readonly ICharismaData<MenuItem> db;
+        private readonly IRepository<MenuItemType> repository;
 
-        public MenuController(ICharismaData<MenuItem> db)
+        public MenuItemTypeController(IRepository<MenuItemType> repository)
         {
-            this.db = db;
+            this.repository = repository;
         }
 
         // GET: Menu
         public ActionResult Index()
         {
-            var model = db.GetAll(m => m.IsAvailable);
+            var model = repository.GetAll();
             return View(model);
         }
 
         // GET: Menu/Details/5
-        public ActionResult Details(string name)
+        public ActionResult Details(int id)
         {
-            var model = db.Get(name);
-            return View();
+            var model = repository.Get(id);
+            return RedirectToAction(nameof(MenuItemSubTypeController.Index), "MenuItemSubType", model);
+            //return View(model);
         }
 
         // GET: Menu/Create
@@ -41,12 +42,11 @@ namespace Charisma.MVC.Controllers
         // POST: Menu/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(MenuItemType obj)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                repository.Add(obj);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -58,18 +58,18 @@ namespace Charisma.MVC.Controllers
         // GET: Menu/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = repository.Get(id);
+            return View(model);
         }
 
         // POST: Menu/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(MenuItemType obj)
         {
             try
             {
-                // TODO: Add update logic here
-
+                repository.Update(obj);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,24 +81,8 @@ namespace Charisma.MVC.Controllers
         // GET: Menu/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Menu/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            repository.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

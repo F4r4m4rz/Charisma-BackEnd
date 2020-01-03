@@ -8,23 +8,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Charisma.Core.Model.Menu
 {
-    public class MenuItem
+    public class MenuItem : ICharismaObject
     {
         public int Id { get; set; }
 
-        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
 
         [MaxLength(255)]
         public string Description { get; set; }
 
-        [Required]
-        public MenuItemType Type { get; set; }
+        [Range(0, double.MaxValue)]
+        public double Fee { get; set; }
+
+        public TimeSpan WaitingTime { get; set; }
+
+        public bool IsAvailable { get; set; }
+
+        public Recipe Recipe { get; set; }
+
+        [NotMapped]
+        public MenuItemType Type { get => SubType.Owner; }
 
         [Required]
         public MenuItemSubType SubType { get; set; }
 
-        public Recipe Recipe { get; set; }
+        [NotMapped]
+        public List<Ingredient> Ingredients { get => Recipe.Ingredients; }
+
+        public byte[] Image { get; set; }
     }
 }
