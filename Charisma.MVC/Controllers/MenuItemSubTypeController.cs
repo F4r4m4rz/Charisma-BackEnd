@@ -7,6 +7,7 @@ using Charisma.Core.Model.Menu;
 using Charisma.MVC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Charisma.MVC.Controllers
 {
@@ -22,9 +23,9 @@ namespace Charisma.MVC.Controllers
         // GET: MenuItemSubType
         public ActionResult Index(int id)
         {
-            var model = repository.GetFull(nameof(MenuItemType.SubTypes)).Where(c => c.Id == id).FirstOrDefault();
-            ViewData.Add("OwnerId", id);
-            return View(model.SubTypes);
+            var model = repository.GetFull(nameof(MenuItemType.SubTypes)).Where(c => c.Id == id).FirstOrDefault()?.SubTypes;
+            TempData["OwnerId"] = id;
+            return View(model);
         }
 
         // GET: MenuItemSubType/Details/5
@@ -34,34 +35,37 @@ namespace Charisma.MVC.Controllers
         }
 
         // GET: MenuItemSubType/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int ownerId)
         {
-            ViewData.Add("OwnerId", id);
+            TempData["OwnerId"] = ownerId;
             return View();
         }
 
         // POST: MenuItemSubType/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MenuItemSubType obj, int id)
+        public ActionResult Create(IFormCollection col, int ownerId)
         {
             try
             {
-                var owner = repository.GetFull("SubTypes").Where(c => c.Id == id).FirstOrDefault();
-                if (owner.SubTypes == null)
-                    owner.SubTypes = new List<MenuItemSubType>();
+                var obj = new MenuItemSubType()
+                {
+                    Name = col["Name"],
+                    Description = col["Description"]
+                };
+                var owner = repository.GetFull("SubTypes").Where(c => c.Id == ownerId).FirstOrDefault();
                 owner.SubTypes.Add(obj);
                 repository.Update(owner);
-                return RedirectToAction(nameof(Index), owner.Id);
+                return RedirectToAction(nameof(Index),new { id = ownerId });
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return View();
             }
         }
 
         // GET: MenuItemSubType/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, int ownerId)
         {
             return View();
         }
@@ -69,11 +73,10 @@ namespace Charisma.MVC.Controllers
         // POST: MenuItemSubType/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, int ownerId, IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
 
                 return RedirectToAction(nameof(Index));
             }

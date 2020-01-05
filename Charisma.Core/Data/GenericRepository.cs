@@ -9,7 +9,7 @@ namespace Charisma.Core.Data
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, ICharismaObject
     {
-        private readonly DbContext db;
+        public readonly DbContext db;
         private DbSet<TEntity> _dbSet;
 
         public GenericRepository(DbContext db)
@@ -44,15 +44,15 @@ namespace Charisma.Core.Data
         {
             if (func == null)
             {
-                return _dbSet.AsNoTracking().ToList();
+                return _dbSet.ToList();
             }
 
-            return _dbSet.AsNoTracking().Where(func);
+            return _dbSet.Where(func);
         }
 
         public IQueryable<TEntity> GetAllQueryable()
         {
-            return _dbSet.AsNoTracking();
+            return _dbSet;
         }
 
         public IQueryable<TEntity> GetFull(params string[] properties)
@@ -64,18 +64,11 @@ namespace Charisma.Core.Data
                 set = set.Include(property);
             }
 
-            return set.AsTracking();
+            return set;
         }
 
         public void Update(TEntity updatedData)
         {
-            var local = _dbSet.Local.FirstOrDefault(c => c.Id == updatedData.Id);
-
-            if (local != null)
-            {
-                db.Entry(local).State = EntityState.Detached;
-            }
-
             db.Entry(updatedData).State = EntityState.Modified;
             db.SaveChanges();
         }
