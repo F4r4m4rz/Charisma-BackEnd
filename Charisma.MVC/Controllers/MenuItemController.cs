@@ -42,12 +42,11 @@ namespace Charisma.MVC.Controllers
         // POST: MenuItem/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(IFormCollection collection, int ownerId)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var model = new GenericMenuModel<MenuItemSubType, MenuItem, Ingredient>(repository, ownerId);
                 return RedirectToAction(nameof(Index));
             }
             catch
