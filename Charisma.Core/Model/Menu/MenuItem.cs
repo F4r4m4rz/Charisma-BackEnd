@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Charisma.Core.Model.Menu
 {
-    public class MenuItem : ICharismaObject
+    public class MenuItem : ICharismaObject<Ingredient>
     {
         public int Id { get; set; }
 
@@ -25,16 +25,13 @@ namespace Charisma.Core.Model.Menu
 
         public bool IsAvailable { get; set; }
 
-        public Recipe Recipe { get; set; }
-
         [NotMapped]
         public MenuItemType Type { get => SubType.Owner; }
 
         [Required]
         public MenuItemSubType SubType { get; set; }
 
-        [NotMapped]
-        public List<Ingredient> Ingredients { get => Recipe.Ingredients; }
+        public List<Ingredient> Members { get; set; }
 
         public byte[] Image { get; set; }
     }

@@ -15,7 +15,7 @@ namespace Charisma.Core.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Menu")
+                .HasDefaultSchema("CharismaMenu")
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,16 +34,16 @@ namespace Charisma.Core.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int?>("MenuItemId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("MenuItemId");
 
                     b.ToTable("Ingredients");
                 });
@@ -74,9 +74,6 @@ namespace Charisma.Core.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SubTypeId")
                         .HasColumnType("int");
 
@@ -86,8 +83,6 @@ namespace Charisma.Core.Migrations
                         .HasDefaultValue(new TimeSpan(0, 0, 0, 0, 0));
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
 
                     b.HasIndex("SubTypeId");
 
@@ -112,7 +107,7 @@ namespace Charisma.Core.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("OwnerId")
+                    b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -144,44 +139,17 @@ namespace Charisma.Core.Migrations
                     b.ToTable("MenuItemTypes");
                 });
 
-            modelBuilder.Entity("Charisma.Core.Model.Menu.Recipe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Recipes");
-                });
-
             modelBuilder.Entity("Charisma.Core.Model.Menu.Ingredient", b =>
                 {
-                    b.HasOne("Charisma.Core.Model.Menu.Recipe", "Recipe")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("RecipeId");
+                    b.HasOne("Charisma.Core.Model.Menu.MenuItem", "MenuItem")
+                        .WithMany("Members")
+                        .HasForeignKey("MenuItemId");
                 });
 
             modelBuilder.Entity("Charisma.Core.Model.Menu.MenuItem", b =>
                 {
-                    b.HasOne("Charisma.Core.Model.Menu.Recipe", "Recipe")
-                        .WithMany()
-                        .HasForeignKey("RecipeId");
-
                     b.HasOne("Charisma.Core.Model.Menu.MenuItemSubType", "SubType")
-                        .WithMany("MenuItem")
+                        .WithMany("Members")
                         .HasForeignKey("SubTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -190,8 +158,10 @@ namespace Charisma.Core.Migrations
             modelBuilder.Entity("Charisma.Core.Model.Menu.MenuItemSubType", b =>
                 {
                     b.HasOne("Charisma.Core.Model.Menu.MenuItemType", "Owner")
-                        .WithMany("SubTypes")
-                        .HasForeignKey("OwnerId");
+                        .WithMany("Members")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

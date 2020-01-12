@@ -6,7 +6,7 @@ using Charisma.Core.Model.Base;
 
 namespace Charisma.Core.Model.Events
 {
-    public class EventSubType : ICharismaObject
+    public class EventSubType
     {
         public int Id { get; set; }
         [Key, Column(Order = 0)]

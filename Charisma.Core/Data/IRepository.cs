@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Charisma.Core.Data
 {
-    public interface IRepository<T> where T : ICharismaObject
+    public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll(Func<T, bool> func = null);
         IQueryable<T> GetAllQueryable();

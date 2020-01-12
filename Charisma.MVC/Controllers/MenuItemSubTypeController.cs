@@ -23,22 +23,21 @@ namespace Charisma.MVC.Controllers
         // GET: MenuItemSubType
         public ActionResult Index(int id)
         {
-            var model = repository.GetFull(nameof(MenuItemType.SubTypes)).Where(c => c.Id == id).FirstOrDefault()?.SubTypes;
-            TempData["OwnerId"] = id;
+            var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, id);
             return View(model);
         }
 
         // GET: MenuItemSubType/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return RedirectToAction(nameof(MenuItemController.Index), "MenuItem", new { id = id });
         }
 
         // GET: MenuItemSubType/Create
         public ActionResult Create(int ownerId)
         {
-            TempData["OwnerId"] = ownerId;
-            return View();
+            var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, ownerId);
+            return View(model);
         }
 
         // POST: MenuItemSubType/Create
@@ -48,14 +47,16 @@ namespace Charisma.MVC.Controllers
         {
             try
             {
+                var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, ownerId);
+
                 var obj = new MenuItemSubType()
                 {
-                    Name = col["Name"],
-                    Description = col["Description"]
+                    Name = col["ActiveSubType.Name"],
+                    Description = col["ActiveSubType.Description"]
                 };
-                var owner = repository.GetFull("SubTypes").Where(c => c.Id == ownerId).FirstOrDefault();
-                owner.SubTypes.Add(obj);
-                repository.Update(owner);
+
+                model.Owner.Members.Add(obj);
+                repository.Update(model.Owner);
                 return RedirectToAction(nameof(Index),new { id = ownerId });
             }
             catch(Exception)
@@ -67,7 +68,8 @@ namespace Charisma.MVC.Controllers
         // GET: MenuItemSubType/Edit/5
         public ActionResult Edit(int id, int ownerId)
         {
-            return View();
+            var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, id, ownerId);
+            return View(model);
         }
 
         // POST: MenuItemSubType/Edit/5
@@ -77,8 +79,16 @@ namespace Charisma.MVC.Controllers
         {
             try
             {
+                var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, id, ownerId);
+                
+                // Modify
+                model.ActiveSubType.Name = collection["ActiveSubType.Name"];
+                model.ActiveSubType.Description = collection["ActiveSubType.Description"];
 
-                return RedirectToAction(nameof(Index));
+                // Update table
+                repository.Update(model.Owner);
+
+                return RedirectToAction(nameof(Index), new { id = ownerId });
             }
             catch
             {
@@ -87,26 +97,15 @@ namespace Charisma.MVC.Controllers
         }
 
         // GET: MenuItemSubType/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int ownerId)
         {
-            return View();
-        }
+            var model = new GenericMenuModel<MenuItemType, MenuItemSubType, MenuItem>(repository, id, ownerId);
 
-        // POST: MenuItemSubType/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+            // Remove subtype from the type and delete
+            model.SubTypes.Remove(model.ActiveSubType);
+            repository.Update(model.Owner);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction(nameof(Index), new { id = ownerId });
         }
     }
 }

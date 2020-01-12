@@ -28,8 +28,7 @@ namespace Charisma.MVC.Controllers
         // GET: Menu/Details/5
         public ActionResult Details(int id)
         {
-            var model = repository.Get(id);
-            return RedirectToAction(nameof(MenuItemSubTypeController.Index), "MenuItemSubType", model);
+            return RedirectToAction(nameof(MenuItemSubTypeController.Index), "MenuItemSubType", id);
             //return View(model);
         }
 

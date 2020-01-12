@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Charisma.Core.Model.Menu
 {
-    public class MenuItemType : ICharismaObject
+    public class MenuItemType : ICharismaObject<MenuItemSubType>
     {
         public int Id { get; set; }
 
@@ -14,7 +15,7 @@ namespace Charisma.Core.Model.Menu
 
         public string Description { get; set; }
 
-        public List<MenuItemSubType> SubTypes { get; set; }
+        public List<MenuItemSubType> Members { get; set; }
 
         public byte[] Image { get; set; }
     }

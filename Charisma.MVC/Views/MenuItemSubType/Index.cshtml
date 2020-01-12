@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Charisma.Core.Model.Menu.MenuItemSubType>
+﻿@model GenericMenuModel<Charisma.Core.Model.Menu.MenuItemType,
+    Charisma.Core.Model.Menu.MenuItemSubType,
+    Charisma.Core.Model.Menu.MenuItem>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,36 +9,36 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create" asp-route-ownerId="@TempData["OwnerId"]">Create New</a>
+    <a asp-action="Create" asp-route-ownerId="@Model.ownerId">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.ActiveSubType.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.ActiveSubType.Description)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-ownerId = "@TempData["OwnerId"]">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.SubTypes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-ownerId="@Model.ownerId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-ownerId="@Model.ownerId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

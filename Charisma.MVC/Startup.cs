@@ -34,6 +34,7 @@ namespace Charisma.MVC
             services.AddScoped<DbContext, CharismaDbContext>();
             services.AddScoped<IRepository<MenuItemType>, GenericRepository<MenuItemType>>();
             services.AddScoped<IRepository<MenuItemSubType>, GenericRepository<MenuItemSubType>>();
+            services.AddScoped<IRepository<MenuItem>, GenericRepository<MenuItem>>();
 
             services.AddControllersWithViews();
         }

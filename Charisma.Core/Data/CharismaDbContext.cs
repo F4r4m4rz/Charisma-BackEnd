@@ -16,18 +16,17 @@ namespace Charisma.Core.Data
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<MenuItemType> MenuItemTypes { get; set; }
         public DbSet<MenuItemSubType> MenuItemSubTypes { get; set; }
-        public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    optionsBuilder.UseSqlServer(@"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = CharismaDb;Integrated Security=true;");
+        //    optionsBuilder.UseSqlServer(@"Server=tcp:charismaserver.database.windows.net,1433;Initial Catalog=CharismaDb;Persist Security Info=False;User ID=charisma;Password=Far1898859;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Defining the schema
-            modelBuilder.HasDefaultSchema("Menu");
+            modelBuilder.HasDefaultSchema("CharismaMenu");
 
             // MenuItemType
             //modelBuilder.Entity<MenuItemType>().HasKey(c => c.Name);
@@ -37,14 +36,14 @@ namespace Charisma.Core.Data
 
             modelBuilder.Entity<MenuItemSubType>()
                 .HasOne(p => p.Owner)
-                .WithMany(b => b.SubTypes);
+                .WithMany(b => b.Members);
 
             // MenuItem
             //modelBuilder.Entity<MenuItem>().HasKey(k => new { k.Name });
 
             modelBuilder.Entity<MenuItem>()
                 .HasOne(p => p.SubType)
-                .WithMany(b => b.MenuItem);
+                .WithMany(b => b.Members);
 
             modelBuilder.Entity<MenuItem>()
                 .Property<TimeSpan>("WaitingTime")
@@ -61,8 +60,8 @@ namespace Charisma.Core.Data
             //modelBuilder.Entity<Ingredient>().HasKey(k => k.Name);
 
             modelBuilder.Entity<Ingredient>()
-                .HasOne(p => p.Recipe)
-                .WithMany(b => b.Ingredients);
+                .HasOne(p => p.MenuItem)
+                .WithMany(b => b.Members);
         }
     }
 }

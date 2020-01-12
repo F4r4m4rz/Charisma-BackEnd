@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Charisma.Core.Data
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, ICharismaObject
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         public readonly DbContext db;
         private DbSet<TEntity> _dbSet;
